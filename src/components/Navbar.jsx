@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
-import logo from '../assets/images/logo.png'
+import logo from '../assets/images/Logo.png'
 import './Navbar.css'
 
 const Navbar = () => {
