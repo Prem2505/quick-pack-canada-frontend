@@ -15,28 +15,36 @@ const Services = () => {
       size: 'Small',
       dimensions: '8" x 8" x 1.75"',
       description: 'Perfect for personal pizzas and small slices',
-      price: 0.45
+      price: 0.45,
+      // Small box - single small pizza box, close-up view
+      image: 'https://images.pexels.com/photos/4109075/pexels-photo-4109075.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
     },
     {
       type: 'pizza-box',
       size: 'Medium',
       dimensions: '10" x 10" x 1.75"',
       description: 'Ideal for medium pizzas (12-14 inches)',
-      price: 0.55
+      price: 0.55,
+      // Medium box - pizza boxes from side angle
+      image: 'https://images.pexels.com/photos/21792435/pexels-photo-21792435.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
     },
     {
       type: 'pizza-box',
       size: 'Large',
       dimensions: '12" x 12" x 1.75"',
       description: 'Best for large pizzas (16-18 inches)',
-      price: 0.65
+      price: 0.65,
+      // Large box - stack of pizza boxes showing larger size
+      image: 'https://images.pexels.com/photos/23962811/pexels-photo-23962811.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
     },
     {
       type: 'pizza-box',
       size: 'Extra Large',
       dimensions: '14" x 14" x 2"',
       description: 'For extra large pizzas and family orders',
-      price: 0.75
+      price: 0.75,
+      // Extra large box - multiple pizza boxes stacked, emphasizing large size
+      image: 'https://images.pexels.com/photos/21792438/pexels-photo-21792438.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
     },
     // {
     //   type: 'pizza-box',
@@ -48,42 +56,48 @@ const Services = () => {
   ]
 
   const paperCupSizes = [
+    // {
+    //   type: 'paper-cup',
+    //   size: '4 oz',
+    //   description: 'Perfect for espresso shots and small beverages',
+    //   price: 0.15
+    // },
     {
       type: 'paper-cup',
-      size: '4 oz',
-      description: 'Perfect for espresso shots and small beverages',
-      price: 0.15
-    },
-    {
-      type: 'paper-cup',
-      size: '8 oz',
+      size: '10 oz',
       description: 'Ideal for hot coffee and tea servings',
-      price: 0.18
+      price: 0.18,
+      // 10 oz - smaller paper cup, empty disposable cup showing smaller size
+      image: 'https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
     },
     {
       type: 'paper-cup',
       size: '12 oz',
       description: 'Standard size for regular coffee drinks',
-      price: 0.22
+      price: 0.22,
+      // 12 oz - medium paper cup, empty disposable cup showing medium size
+      image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=400&fit=crop&q=80'
     },
     {
       type: 'paper-cup',
-      size: '16 oz',
+      size: '14 oz',
       description: 'Large size for generous servings',
-      price: 0.25
+      price: 0.25,
+      // 14 oz - larger paper cup, empty disposable cup showing larger size
+      image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=400&fit=crop&q=80'
     },
-    {
-      type: 'paper-cup',
-      size: '20 oz',
-      description: 'Extra large for big thirst quenchers',
-      price: 0.28
-    },
-    {
-      type: 'paper-cup',
-      size: '24 oz',
-      description: 'Maximum size for super-sized drinks',
-      price: 0.32
-    }
+    // {
+    //   type: 'paper-cup',
+    //   size: '20 oz',
+    //   description: 'Extra large for big thirst quenchers',
+    //   price: 0.28
+    // },
+    // {
+    //   type: 'paper-cup',
+    //   size: '24 oz',
+    //   description: 'Maximum size for super-sized drinks',
+    //   price: 0.32
+    // }
   ]
 
   return (
@@ -124,7 +138,19 @@ const Services = () => {
                     setIsModalOpen(true)
                   }}
                 >
-                  <div className="service-icon">📦</div>
+                  {box.image ? (
+                    <img 
+                      src={box.image} 
+                      alt={`${box.size} Pizza Box`}
+                      className="service-image"
+                      onError={(e) => {
+                        e.target.style.display = 'none'
+                        const icon = e.target.parentElement.querySelector('.service-icon')
+                        if (icon) icon.style.display = 'block'
+                      }}
+                    />
+                  ) : null}
+                  <div className="service-icon" style={{ display: box.image ? 'none' : 'block' }}>📦</div>
                   <h3>{box.size}</h3>
                   <p className="dimensions">{box.dimensions}</p>
                   <p className="price">${box.price.toFixed(2)} per box</p>
@@ -162,7 +188,19 @@ const Services = () => {
                     setIsModalOpen(true)
                   }}
                 >
-                  <div className="service-icon">🥤</div>
+                  {cup.image ? (
+                    <img 
+                      src={cup.image} 
+                      alt={`${cup.size} Paper Cup`}
+                      className="service-image"
+                      onError={(e) => {
+                        e.target.style.display = 'none'
+                        const icon = e.target.parentElement.querySelector('.service-icon')
+                        if (icon) icon.style.display = 'block'
+                      }}
+                    />
+                  ) : null}
+                  <div className="service-icon" style={{ display: cup.image ? 'none' : 'block' }}>🥤</div>
                   <h3>{cup.size}</h3>
                   <p className="price">${cup.price.toFixed(2)} per cup</p>
                   <p>{cup.description}</p>
