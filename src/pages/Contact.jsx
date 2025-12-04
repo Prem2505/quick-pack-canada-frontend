@@ -11,7 +11,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null)
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+  const API_URL = import.meta.env.VITE_API_URL || 'https://quick-pack-canada-backend-1.onrender.com'
 
   const handleChange = (e) => {
     setFormData({
